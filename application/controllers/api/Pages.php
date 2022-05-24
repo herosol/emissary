@@ -20,7 +20,6 @@ class Pages extends MY_Controller
             $this->data['details'] = ($data->full_code);
             $this->data['meta_desc'] = json_decode($meta->content);
             $this->data['partners']  = $this->master->get_data_rows('partners', ['status'=> '1']); 
-            $this->data['news']      = $this->master->getRows('news', ['status'=> 1], 0, 4, 'DESC', 'id');
             http_response_code(200);
             echo json_encode($this->data);
         } 

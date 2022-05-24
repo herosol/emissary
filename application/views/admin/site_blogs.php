@@ -1,8 +1,8 @@
-<?php echo getBredcrum(ADMIN, array('#' => 'Privacy Policy Page')); ?>
+<?php echo getBredcrum(ADMIN, array('#' => 'Blogs')); ?>
 <?php echo showMsg(); ?>
 <div class="row margin-bottom-10">
     <div class="col-md-6">
-        <h2 class="no-margin"><i class="entypo-window"></i> Update <strong>Privacy Policy Page</strong></h2>
+        <h2 class="no-margin"><i class="entypo-window"></i> Update <strong>Blogs</strong></h2>
     </div>
     <div class="col-md-6 text-right">
         <!--        <a href="<?php echo base_url('admin/services'); ?>" class="btn btn-lg btn-default"><i class="fa fa-arrow-left"></i> Cancel</a>-->
@@ -49,21 +49,15 @@
                         <label for="banner_heading" class="control-label"> Banner Heading <span class="symbol required">*</span></label>
                         <input type="text" name="banner_heading" value="<?= $row['banner_heading'] ?>" class="form-control" required>
                     </div>
-                </div>
-            </div>
-        </div>
-        <h3> Section 2</h3>
-        <div class="form-group">
-            <div class="col-md-12">
-                <div class="form-group">
                     <div class="col-md-12">
-                        <label for="page_detail" class="control-label"> Detail <span class="symbol required">*</span></label>
-                        <textarea name="page_detail" rows="4" class="form-control ckeditor" ><?= $row['page_detail'] ?></textarea>
+                        <label for="right_card_heading" class="control-label"> Right Card Heading <span class="symbol required">*</span></label>
+                        <input type="text" name="right_card_heading" value="<?= $row['right_card_heading'] ?>" class="form-control" required>
                     </div>
                 </div>
             </div>
         </div>
-        
+
+
        
 
             <div class="form-group">

@@ -20,17 +20,17 @@ class Sitecontent extends Admin_Controller
             if(!is_array($content_row))
                 $content_row = array();
 
-            for($i = 1; $i <= 9; $i++) {
+            for($i = 1; $i <= 7; $i++) {
                 if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
                     
                     $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
-                    if($i>=1 && $i <= 3)
+                    if($i >= 1 && $i <= 2)
                     {
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
+                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],300,'thumb_');
+                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],500,'500p_');
                         generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1400,'1400p_');
                     }
-                    elseif($i>=4 && $i <= 6)
+                    elseif($i>=3 && $i <= 5)
                     {
                         generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],100,'thumb_');
                     }
@@ -39,6 +39,7 @@ class Sitecontent extends Admin_Controller
                         generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],300,'thumb_');
                         generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],500,'500p_');
                         generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
+                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'1000p_');
                     }
                     if(!empty($image['file_name'])){
                         if(isset($content_row['image'.$i]))
@@ -46,6 +47,16 @@ class Sitecontent extends Admin_Controller
                             $this->remove_file(UPLOAD_PATH."images/thumb_".$content_row['image'.$i]);
                         $vals['image'.$i] = $image['file_name'];
                     }
+                }
+            }
+
+            if (isset($_FILES["video"]["name"]) && $_FILES["video"]["name"] != "") {
+                
+                $video = upload_file(UPLOAD_PATH.'images/', 'video', 'video');
+                if(!empty($video['file_name'])){
+                    if(isset($content_row['video']))
+                        $this->remove_file(UPLOAD_PATH."images/".$content_row['video']);
+                    $vals['video'] = $video['file_name'];
                 }
             }
 
@@ -72,28 +83,21 @@ class Sitecontent extends Admin_Controller
             if(!is_array($content_row))
                 $content_row = array();
 
-            for($i = 1; $i <= 2; $i++) {
+            for($i = 1; $i <= 3; $i++) {
                 if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
                     
                     $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
-                    if($i=== 1)
-                    {
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],2000,'2000p_');
-                    }
-                    else
-                    {
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],300,'thumb_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],500,'500p_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
-                    }
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],500,'500p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1200,'1200p_');
+
                     if(!empty($image['file_name'])){
                         if(isset($content_row['image'.$i]))
                             $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
                             $this->remove_file(UPLOAD_PATH."images/thumb_".$content_row['image'.$i]);
-                            $this->remove_file(UPLOAD_PATH."images/400p_".$content_row['image'.$i]);
-                            $this->remove_file(UPLOAD_PATH."images/600p_".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/800p_".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/1200p_".$content_row['image'.$i]);
                         $vals['image'.$i] = $image['file_name'];
                     }
                 }
@@ -111,53 +115,54 @@ class Sitecontent extends Admin_Controller
         $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
     }
 
-    public function services()
+    public function jobs()
     {
         $this->data['enable_editor'] = TRUE;
-        $this->data['pageView'] = ADMIN . '/site_services';
+        $this->data['pageView'] = ADMIN . '/site_jobs';
         if ($vals = $this->input->post()) {
-            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'services'));
+            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'jobs'));
             $content_row = unserialize($content_row->code);
 
             if(!is_array($content_row))
                 $content_row = array();
 
-            for($i = 1; $i <= 1; $i++) {
+            for($i = 1; $i <= 3; $i++) {
                 if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
                     
                     $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
-                    if($i=== 1)
-                    {
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],2000,'2000p_');
-                    }
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1200,'1200p_');
+
                     if(!empty($image['file_name'])){
                         if(isset($content_row['image'.$i]))
                             $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/thumb_".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/800p_".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/1200p_".$content_row['image'.$i]);
                         $vals['image'.$i] = $image['file_name'];
                     }
                 }
             }
 
             $data = serialize(array_merge($content_row, $vals));
-            $this->master->save($this->table_name,array('code' => $data),'ckey', 'services');
+            $this->master->save($this->table_name,array('code' => $data),'ckey', 'jobs');
             setMsg('success', 'Settings updated successfully !');
-            redirect(ADMIN . "/sitecontent/services");
+            redirect(ADMIN . "/sitecontent/jobs");
             exit;
         }
 
-        $this->data['row'] = $this->master->getRow($this->table_name, array('ckey' => 'services'));
+        $this->data['row'] = $this->master->getRow($this->table_name, array('ckey' => 'jobs'));
         $this->data['row'] = unserialize($this->data['row']->code);
         $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
     }
 
-    public function opportunities()
+    public function blogs()
     {
         $this->data['enable_editor'] = TRUE;
-        $this->data['pageView'] = ADMIN . '/site_opportunities';
+        $this->data['pageView'] = ADMIN . '/site_blogs';
         if ($vals = $this->input->post()) {
-            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'opportunities'));
+            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'blogs'));
             $content_row = unserialize($content_row->code);
 
             if(!is_array($content_row))
@@ -167,28 +172,71 @@ class Sitecontent extends Admin_Controller
                 if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
                     
                     $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
-                    if($i=== 1)
-                    {
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],2000,'2000p_');
-                    }
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1200,'1200p_');
+
                     if(!empty($image['file_name'])){
                         if(isset($content_row['image'.$i]))
                             $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/thumb_".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/800p_".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/1200p_".$content_row['image'.$i]);
                         $vals['image'.$i] = $image['file_name'];
                     }
                 }
             }
 
             $data = serialize(array_merge($content_row, $vals));
-            $this->master->save($this->table_name,array('code' => $data),'ckey', 'opportunities');
+            $this->master->save($this->table_name,array('code' => $data),'ckey', 'blogs');
             setMsg('success', 'Settings updated successfully !');
-            redirect(ADMIN . "/sitecontent/opportunities");
+            redirect(ADMIN . "/sitecontent/blogs");
             exit;
         }
 
-        $this->data['row'] = $this->master->getRow($this->table_name, array('ckey' => 'opportunities'));
+        $this->data['row'] = $this->master->getRow($this->table_name, array('ckey' => 'blogs'));
+        $this->data['row'] = unserialize($this->data['row']->code);
+        $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
+    }
+    
+    public function blog_detail()
+    {
+        $this->data['enable_editor'] = TRUE;
+        $this->data['pageView'] = ADMIN . '/site_blog_detail';
+        if ($vals = $this->input->post()) {
+            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'blog_detail'));
+            $content_row = unserialize($content_row->code);
+
+            if(!is_array($content_row))
+                $content_row = array();
+
+            for($i = 1; $i <= 1; $i++) {
+                if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
+                    
+                    $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1200,'1200p_');
+
+                    if(!empty($image['file_name'])){
+                        if(isset($content_row['image'.$i]))
+                            $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/thumb_".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/800p_".$content_row['image'.$i]);
+                            $this->remove_file(UPLOAD_PATH."images/1200p_".$content_row['image'.$i]);
+                        $vals['image'.$i] = $image['file_name'];
+                    }
+                }
+            }
+
+            $data = serialize(array_merge($content_row, $vals));
+            $this->master->save($this->table_name,array('code' => $data),'ckey', 'blog_detail');
+            setMsg('success', 'Settings updated successfully !');
+            redirect(ADMIN . "/sitecontent/blog_detail");
+            exit;
+        }
+
+        $this->data['row'] = $this->master->getRow($this->table_name, array('ckey' => 'blog_detail'));
         $this->data['row'] = unserialize($this->data['row']->code);
         $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
     }
@@ -208,12 +256,9 @@ class Sitecontent extends Admin_Controller
                 if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
                     
                     $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
-                    if($i=== 1)
-                    {
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
-                        generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],2000,'2000p_');
-                    }
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1200,'1200p_');
                     if(!empty($image['file_name'])){
                         if(isset($content_row['image'.$i]))
                             $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
@@ -288,10 +333,9 @@ class Sitecontent extends Admin_Controller
                 if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
                     
                     $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
-                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],200,'thumb_');
-                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],500,'500p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
                     generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
-                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'1000p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1200,'1200p_');
                     if(!empty($image['file_name'])){
                         if(isset($content_row['image'.$i]))
                             $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
@@ -308,6 +352,82 @@ class Sitecontent extends Admin_Controller
         }
 
         $this->data['row'] = $this->master->getRow($this->table_name, array('ckey' => 'privacy_policy'));
+        $this->data['row'] = unserialize($this->data['row']->code);
+        $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
+    }
+
+    public function terms_and_conditions()
+    {
+        $this->data['enable_editor'] = TRUE;
+        $this->data['pageView'] = ADMIN . '/site_terms_and_conditions';
+        if ($vals = $this->input->post()) {
+            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'terms_and_conditions'));
+            $content_row = unserialize($content_row->code);
+
+            if(!is_array($content_row))
+                $content_row = array();
+
+            for($i = 1; $i <= 1; $i++) {
+                if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
+                    
+                    $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1200,'1200p_');
+                    if(!empty($image['file_name'])){
+                        if(isset($content_row['image'.$i]))
+                            $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
+                        $vals['image'.$i] = $image['file_name'];
+                    }
+                }
+            }
+
+            $data = serialize(array_merge($content_row, $vals));
+            $this->master->save($this->table_name,array('code' => $data),'ckey', 'terms_and_conditions');
+            setMsg('success', 'Settings updated successfully !');
+            redirect(ADMIN . "/sitecontent/terms_and_conditions");
+            exit;
+        }
+
+        $this->data['row'] = $this->master->getRow($this->table_name, array('ckey' => 'terms_and_conditions'));
+        $this->data['row'] = unserialize($this->data['row']->code);
+        $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
+    }
+
+    public function disclaimer()
+    {
+        $this->data['enable_editor'] = TRUE;
+        $this->data['pageView'] = ADMIN . '/site_disclaimer';
+        if ($vals = $this->input->post()) {
+            $content_row = $this->master->getRow($this->table_name, array('ckey' => 'disclaimer'));
+            $content_row = unserialize($content_row->code);
+
+            if(!is_array($content_row))
+                $content_row = array();
+
+            for($i = 1; $i <= 1; $i++) {
+                if (isset($_FILES["image".$i]["name"]) && $_FILES["image".$i]["name"] != "") {
+                    
+                    $image = upload_file(UPLOAD_PATH.'images/', 'image'.$i);
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1000,'thumb_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],800,'800p_');
+                    generate_thumb(UPLOAD_PATH.'images/',UPLOAD_PATH.'images/',$image['file_name'],1200,'1200p_');
+                    if(!empty($image['file_name'])){
+                        if(isset($content_row['image'.$i]))
+                            $this->remove_file(UPLOAD_PATH."images/".$content_row['image'.$i]);
+                        $vals['image'.$i] = $image['file_name'];
+                    }
+                }
+            }
+
+            $data = serialize(array_merge($content_row, $vals));
+            $this->master->save($this->table_name,array('code' => $data),'ckey', 'disclaimer');
+            setMsg('success', 'Settings updated successfully !');
+            redirect(ADMIN . "/sitecontent/disclaimer");
+            exit;
+        }
+
+        $this->data['row'] = $this->master->getRow($this->table_name, array('ckey' => 'disclaimer'));
         $this->data['row'] = unserialize($this->data['row']->code);
         $this->load->view(ADMIN . '/includes/siteMaster', $this->data);
     }

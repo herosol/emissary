@@ -16,7 +16,16 @@
             <h3> Main Banner</h3>
                 <div class="form-group">
                     <div class="col-md-4">
-                        <div class="panel panel-primary" data-collapsed="0">
+                        <label>Upload Banner Video Here</label>
+                        <input type="file" name="video" accept="image/*" <?php if (empty($row['video'])) { echo 'required=""'; } ?>>
+
+                        <br/>
+                        <?php if(!empty($row['video'])): ?>
+                            <video src="<?= getImageSrc(UPLOAD_PATH . "images/", $row['video'])?>" width="300" controls>
+                            </video>
+                        <?php endif; ?>
+
+                        <!-- <div class="panel panel-primary" data-collapsed="0">
                             <div class="panel-heading">
                                 <div class="panel-title">
                                     Image 
@@ -41,7 +50,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-md-8">
                             <div class="form-group">
@@ -158,14 +167,14 @@
                                     <div class="panel-body">
                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail" style="max-width: 310px; height: 110px;" data-trigger="fileinput">
-                                                <img src="<?=get_site_image_src("images", $row['image'.($i+1)]) ?>" alt="--">
+                                                <img src="<?=get_site_image_src("images", $row['image'.($i)]) ?>" alt="--">
                                             </div>
                                             <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 320px; max-height: 160px; line-height: 6px;"></div>
                                             <div>
                                                 <span class="btn btn-white btn-file">
                                                     <span class="fileinput-new">Select image</span>
                                                     <span class="fileinput-exists">Change</span>
-                                                    <input type="file" name="image<?=($i+1)?>" accept="image/*" <?php if(empty($row['image'.($i+1)])){echo 'required=""';}?>>
+                                                    <input type="file" name="image<?=($i)?>" accept="image/*" <?php if(empty($row['image'.($i)])){echo 'required=""';}?>>
                                                 </span>
                                                 <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
                                             </div>
@@ -232,14 +241,14 @@
                                         <div class="panel-body">
                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail" style="max-width: 310px; height: 110px;" data-trigger="fileinput">
-                                                    <img src="<?=get_site_image_src("images", $row['image'.($i+3)]) ?>" alt="--">
+                                                    <img src="<?=get_site_image_src("images", $row['image'.($i+2)]) ?>" alt="--">
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 320px; max-height: 160px; line-height: 6px;"></div>
                                                 <div>
                                                     <span class="btn btn-white btn-file">
                                                         <span class="fileinput-new">Select image</span>
                                                         <span class="fileinput-exists">Change</span>
-                                                        <input type="file" name="image<?=($i+3)?>" accept="image/*" <?php if(empty($row['image'.($i+3)])){echo 'required=""';}?>>
+                                                        <input type="file" name="image<?=($i+2)?>" accept="image/*" <?php if(empty($row['image'.($i+2)])){echo 'required=""';}?>>
                                                     </span>
                                                     <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
                                                 </div>
@@ -280,14 +289,14 @@
                                     <div class="panel-body">
                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail" style="max-width: 310px; height: 110px;" data-trigger="fileinput">
-                                                <img src="<?=get_site_image_src("images", $row['image'.($i+6)]) ?>" alt="--">
+                                                <img src="<?=get_site_image_src("images", $row['image'.($i+5)]) ?>" alt="--">
                                             </div>
                                             <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 320px; max-height: 160px; line-height: 6px;"></div>
                                             <div>
                                                 <span class="btn btn-white btn-file">
                                                     <span class="fileinput-new">Select image</span>
                                                     <span class="fileinput-exists">Change</span>
-                                                    <input type="file" name="image<?=($i+6)?>" accept="image/*" <?php if(empty($row['image'.($i+6)])){echo 'required=""';}?>>
+                                                    <input type="file" name="image<?=($i+5)?>" accept="image/*" <?php if(empty($row['image'.($i+5)])){echo 'required=""';}?>>
                                                 </span>
                                                 <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
                                             </div>

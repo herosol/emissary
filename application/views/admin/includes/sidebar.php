@@ -48,6 +48,36 @@
                             <span class="title">Privacy policy</span>
                         </a>
                     </li>
+                    <li class=" <?= ($this->uri->segment(3) == 'terms_and_conditions') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/sitecontent/terms_and_conditions') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Terms And Conditions</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(3) == 'disclaimer') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/sitecontent/disclaimer') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Disclaimer</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(3) == 'Jobs') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/sitecontent/Jobs') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Jobs</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(3) == 'blogs') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/sitecontent/blogs') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Blogs</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(3) == 'blog_detail') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/sitecontent/blog_detail') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Blog Detail</span>
+                        </a>
+                    </li>
                     <li class=" <?= ($this->uri->segment(3) == 'faq') ? ' active' : '' ?>">
                         <a href="<?= site_url(ADMIN.'/sitecontent/faq') ?>">
                             <i class="entypo-doc-text  "></i>
@@ -78,6 +108,26 @@
                         <a href="<?= site_url(ADMIN.'/blogs') ?>">
                             <i class="entypo-doc-text  "></i>
                             <span class="title">Blogs</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class=" <?= ($this->uri->segment(2) == 'job_categories' || $this->uri->segment(2) == 'jobs') ? ' opened  active' : '' ?>">
+                <a href="javascript:void(0)">
+                    <i class="entypo-doc-text"></i>
+                    <span class="title">Manage Jobs Listing</span>
+                </a>
+                <ul>
+                    <li class=" <?= ($this->uri->segment(2) == 'job_categories') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/job_categories') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Job Categories</span>
+                        </a>
+                    </li>
+                    <li class=" <?= ($this->uri->segment(2) == 'jobs') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/jobs') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Jobs</span>
                         </a>
                     </li>
                 </ul>

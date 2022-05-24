@@ -53,10 +53,28 @@
             </div>
         </div>
 
-        <h3> Section 2</h3>
+        <h3> Section 2 (Left Section)</h3>
             <div class="form-group">
                 <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="heading" class="control-label"> Heading <span class="symbol required">*</span></label>
+                            <input type="text" name="heading" value="<?= $row['heading']?>" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="short_detail" class="control-label"> Short Heading <span class="symbol required">*</span></label>
+                            <input type="text" name="short_detail" value="<?= $row['short_detail']?>" class="form-control" required>
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="mid_heading" class="control-label"> Mid Heading <span class="symbol required">*</span></label>
+                            <input type="text" name="mid_heading" value="<?= $row['mid_heading']?>" class="form-control" required>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-md-12">
                             <label for="l_heading_1" class="control-label"> Heading <span class="symbol required">*</span></label>
@@ -94,6 +112,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+         <h3> Section 2 (Right Section)</h3>
+            <div class="form-group">
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="col-md-12">
@@ -165,18 +187,6 @@
                         <div class="col-md-12">
                             <label for="button_text" class="control-label"> Button Text <span class="symbol required">*</span></label>
                             <input type="text" name="button_text" value="<?= $row['button_text']?>" class="form-control" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h3>Map Iframe Link</h3>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <label for="iframe_link" class="control-label"> Map iframe link <span class="symbol required">*</span></label>
-                            <input type="text" name="iframe_link" value="<?= $row['iframe_link']?>" class="form-control" required>
                         </div>
                     </div>
                 </div>

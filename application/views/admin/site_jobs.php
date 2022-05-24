@@ -1,8 +1,8 @@
-<?php echo getBredcrum(ADMIN, array('#' => 'Privacy Policy Page')); ?>
+<?php echo getBredcrum(ADMIN, array('#' => 'Jobs')); ?>
 <?php echo showMsg(); ?>
 <div class="row margin-bottom-10">
     <div class="col-md-6">
-        <h2 class="no-margin"><i class="entypo-window"></i> Update <strong>Privacy Policy Page</strong></h2>
+        <h2 class="no-margin"><i class="entypo-window"></i> Update <strong>Jobs</strong></h2>
     </div>
     <div class="col-md-6 text-right">
         <!--        <a href="<?php echo base_url('admin/services'); ?>" class="btn btn-lg btn-default"><i class="fa fa-arrow-left"></i> Cancel</a>-->
@@ -52,18 +52,8 @@
                 </div>
             </div>
         </div>
-        <h3> Section 2</h3>
-        <div class="form-group">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label for="page_detail" class="control-label"> Detail <span class="symbol required">*</span></label>
-                        <textarea name="page_detail" rows="4" class="form-control ckeditor" ><?= $row['page_detail'] ?></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+
+
        
 
             <div class="form-group">

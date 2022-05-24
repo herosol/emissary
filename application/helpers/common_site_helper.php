@@ -61,6 +61,13 @@ function get_servicename($s_id)
     $row = $CI->master->getRow('services', array('id' => $s_id));
     return ($row->name);
 }
+function get_job_cat($id)
+{
+    global $CI;
+    $CI = get_instance();
+    $row = $CI->master->getRow('job_categories', array('id' => $id));
+    return ($row->title);
+}
 function get_product_cat_name($id)
 {
     global $CI;
