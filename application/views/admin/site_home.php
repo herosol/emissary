@@ -220,8 +220,8 @@
                                 <input type="text" name="fsdm_heading" value="<?= $row['fsdm_heading'] ?>" class="form-control" required>
                             </div>
                             <div class="col-md-12">
-                                <label for="fsdm_heading" class="control-label"> Short Detail <span class="symbol required">*</span></label>
-                                <textarea name="fsdm_heading" rows="2" class="form-control" ><?= $row['fsdm_heading'] ?></textarea>
+                                <label for="fsdm_detail" class="control-label"> Short Detail <span class="symbol required">*</span></label>
+                                <textarea name="fsdm_detail" rows="2" class="form-control" ><?= $row['fsdm_detail'] ?></textarea>
                             </div>
                         </div>
                     </div>

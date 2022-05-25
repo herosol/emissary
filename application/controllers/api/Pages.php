@@ -20,6 +20,188 @@ class Pages extends MY_Controller
             $this->data['details'] = ($data->full_code);
             $this->data['meta_desc'] = json_decode($meta->content);
             $this->data['partners']  = $this->master->get_data_rows('partners', ['status'=> '1']); 
+            $this->data['blogs']     = $this->master->getRows('blogs', ['status'=> 1], 0, 3, 'DESC', 'id');
+            http_response_code(200);
+            echo json_encode($this->data);
+        } 
+        else
+        {
+            http_response_code(404);
+        }
+        exit;
+    }
+
+    function privacy_policy()
+    {
+        $meta = $this->page->getMetaContent('privacy_policy');
+        $this->data['page_title'] = $meta->page_name.' - '.$this->data['site_settings']->site_name;
+        $this->data['slug'] = $meta->slug;
+        $data = $this->page->getPageContent('privacy_policy');
+        if ($data) 
+        {
+            $this->data['content'] = unserialize($data->code);
+            $this->data['details'] = ($data->full_code);
+            $this->data['meta_desc'] = json_decode($meta->content);
+            http_response_code(200);
+            echo json_encode($this->data);
+        } 
+        else
+        {
+            http_response_code(404);
+        }
+        exit;
+    }
+
+    function disclaimer()
+    {
+        $meta = $this->page->getMetaContent('disclaimer');
+        $this->data['page_title'] = $meta->page_name.' - '.$this->data['site_settings']->site_name;
+        $this->data['slug'] = $meta->slug;
+        $data = $this->page->getPageContent('disclaimer');
+        if ($data) 
+        {
+            $this->data['content'] = unserialize($data->code);
+            $this->data['details'] = ($data->full_code);
+            $this->data['meta_desc'] = json_decode($meta->content);
+            http_response_code(200);
+            echo json_encode($this->data);
+        } 
+        else
+        {
+            http_response_code(404);
+        }
+        exit;
+    }
+
+    function faqs()
+    {
+        $meta = $this->page->getMetaContent('faq');
+        $this->data['page_title'] = $meta->page_name.' - '.$this->data['site_settings']->site_name;
+        $this->data['slug'] = $meta->slug;
+        $data = $this->page->getPageContent('faq');
+        if ($data) 
+        {
+            $this->data['content'] = unserialize($data->code);
+            $this->data['details'] = ($data->full_code);
+            $this->data['meta_desc'] = json_decode($meta->content);
+            $this->data['faqs']      = $this->master->getRows('faqs', ['status'=> 1], '', '', 'asc', 'sort_order');
+            http_response_code(200);
+            echo json_encode($this->data);
+        } 
+        else
+        {
+            http_response_code(404);
+        }
+        exit;
+    }
+
+    function about_us()
+    {
+        $meta = $this->page->getMetaContent('about_us');
+        $this->data['page_title'] = $meta->page_name.' - '.$this->data['site_settings']->site_name;
+        $this->data['slug'] = $meta->slug;
+        $data = $this->page->getPageContent('about_us');
+        if ($data) 
+        {
+            $this->data['content'] = unserialize($data->code);
+            $this->data['details'] = ($data->full_code);
+            $this->data['meta_desc'] = json_decode($meta->content);
+            $this->data['team']      = $this->master->getRows('team', ['status'=> 1], '', '', 'asc', 'id');
+            http_response_code(200);
+            echo json_encode($this->data);
+        } 
+        else
+        {
+            http_response_code(404);
+        }
+        exit;
+    }
+
+    function blogs($cat_id)
+    {
+        $meta = $this->page->getMetaContent('blogs');
+        $this->data['page_title'] = $meta->page_name.' - '.$this->data['site_settings']->site_name;
+        $this->data['slug'] = $meta->slug;
+        $data = $this->page->getPageContent('blogs');
+        if ($data) 
+        {
+            $this->data['content'] = unserialize($data->code);
+            $this->data['details'] = ($data->full_code);
+            $this->data['meta_desc'] = json_decode($meta->content);
+            if($cat_id > 0)
+            {
+                $this->data['blogs'] = $this->master->getRows('blogs', ['status'=> 1, 'blog_cat'=> $cat_id], '', '', 'desc', 'id');
+            }
+            else
+            {
+                $this->data['blogs'] = $this->master->getRows('blogs', ['status'=> 1], '', '', 'desc', 'id');
+            }
+
+            if($cat_id > 0)
+            {
+                $cats = $this->master->getRows('blog_categories', ['status'=> 1, 'id <>'=> $cat_id], '', '', 'asc', 'id');
+            }
+            else
+            {
+                $cats = $this->master->getRows('blog_categories', ['status'=> 1], '', '', 'asc', 'id');
+            }
+
+            $this->data['cats'] = [];
+            foreach($cats as $index => $cat):
+                if($this->master->num_rows('blogs', ['blog_cat'=> $cat->id]) > 0)
+                    $this->data['cats'][] = $cat;
+            endforeach;
+
+
+            http_response_code(200);
+            echo json_encode($this->data);
+        } 
+        else
+        {
+            http_response_code(404);
+        }
+        exit;
+    }
+    
+    function blog_detail($id)
+    {
+        $meta = $this->page->getMetaContent('blog_detail');
+        $this->data['page_title'] = $meta->page_name.' - '.$this->data['site_settings']->site_name;
+        $this->data['slug'] = $meta->slug;
+        $data = $this->page->getPageContent('blog_detail');
+        if ($data) 
+        {
+            $this->data['content'] = unserialize($data->code);
+            $this->data['details'] = ($data->full_code);
+            $this->data['meta_desc'] = json_decode($meta->content);
+            $cats = $this->master->getRows('blog_categories', ['status'=> 1], '', '', 'asc', 'id');
+            $this->data['cats'] = [];
+            foreach($cats as $index => $cat):
+                if($this->master->num_rows('blogs', ['blog_cat'=> $cat->id]) > 0)
+                    $this->data['cats'][] = $cat;
+            endforeach;
+            $this->data['blog'] = $this->master->getRow('blogs', ['id'=> $id]);
+            http_response_code(200);
+            echo json_encode($this->data);
+        } 
+        else
+        {
+            http_response_code(404);
+        }
+        exit;
+    }
+
+    function terms_and_conditions()
+    {
+        $meta = $this->page->getMetaContent('terms_and_conditions');
+        $this->data['page_title'] = $meta->page_name.' - '.$this->data['site_settings']->site_name;
+        $this->data['slug'] = $meta->slug;
+        $data = $this->page->getPageContent('terms_and_conditions');
+        if ($data) 
+        {
+            $this->data['content'] = unserialize($data->code);
+            $this->data['details'] = ($data->full_code);
+            $this->data['meta_desc'] = json_decode($meta->content);
             http_response_code(200);
             echo json_encode($this->data);
         } 
@@ -353,28 +535,28 @@ class Pages extends MY_Controller
         exit;
     }
 
-    function blog_detail()
-    {
-        $post = $this->input->post();
-        $meta = $this->page->getMetaContent('blog_detail');
-        $this->data['page_title'] = $meta->page_name.' - '.$this->data['site_settings']->site_name;
-        $this->data['slug'] = $meta->slug;
-        $data = $this->page->getPageContent('blog_detail');
-        if ($data) 
-        {
-            $this->data['content'] = unserialize($data->code);
-            $this->data['details'] = ($data->full_code);
-            $this->data['meta_desc'] = json_decode($meta->content);
-            $this->data['blog_detail'] = $this->master->get_data_row('vlogs', ['id' => $post['id']]);
-            http_response_code(200);
-            echo json_encode($this->data);
-        } 
-        else
-        {
-            http_response_code(404);
-        }
-        exit;
-    }
+    // function blog_detail()
+    // {
+    //     $post = $this->input->post();
+    //     $meta = $this->page->getMetaContent('blog_detail');
+    //     $this->data['page_title'] = $meta->page_name.' - '.$this->data['site_settings']->site_name;
+    //     $this->data['slug'] = $meta->slug;
+    //     $data = $this->page->getPageContent('blog_detail');
+    //     if ($data) 
+    //     {
+    //         $this->data['content'] = unserialize($data->code);
+    //         $this->data['details'] = ($data->full_code);
+    //         $this->data['meta_desc'] = json_decode($meta->content);
+    //         $this->data['blog_detail'] = $this->master->get_data_row('vlogs', ['id' => $post['id']]);
+    //         http_response_code(200);
+    //         echo json_encode($this->data);
+    //     } 
+    //     else
+    //     {
+    //         http_response_code(404);
+    //     }
+    //     exit;
+    // }
 
     function news_detail()
     {

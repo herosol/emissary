@@ -179,7 +179,7 @@ class Master extends CI_Model
         if (!empty($where))
             $this->db->where($where);
         $query = $this->db->get($table);
-        return $query->num_rows();
+        return intval($query->num_rows());
     }
 
     public function last_query()

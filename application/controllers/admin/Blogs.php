@@ -30,6 +30,8 @@ class Blogs extends Admin_Controller {
                     generate_thumb(UPLOAD_PATH . "blogs/", UPLOAD_PATH . "blogs/", $image1['file_name'],400,'400p_');
                     generate_thumb(UPLOAD_PATH . "blogs/", UPLOAD_PATH . "blogs/", $image1['file_name'],500,'500p_');
                     generate_thumb(UPLOAD_PATH . "blogs/", UPLOAD_PATH . "blogs/", $image1['file_name'],700,'700p_');
+                    generate_thumb(UPLOAD_PATH . "blogs/", UPLOAD_PATH . "blogs/", $image1['file_name'],800,'800p_');
+                    generate_thumb(UPLOAD_PATH . "blogs/", UPLOAD_PATH . "blogs/", $image1['file_name'],1000,'1000p_');
                 $vals['image']=$image1['file_name'];
             }
             else{
