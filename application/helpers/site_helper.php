@@ -14,15 +14,15 @@ function get_pages()
 {
     return [
         '/'                     => 'Home',
-        '/about-us'             => 'About Us',
-        '/blogs'                => 'Blogs',
+        '/about'             => 'About Us',
+        '/blog'                => 'Blogs',
         '/jobs'                 => 'Jobs',
-        '/contact-us'           => 'Contact Us',
-        '/faqs'                 => 'FAQ\'s',
+        '/contact'           => 'Contact Us',
+        '/faq'                 => 'FAQ\'s',
         '/pricing'              => 'Pricing',
         '/privacy-policy'       => 'Privacy Policy',
         '/disclaimer'           => 'Disclaimer',
-        '/terms-and-conditions' => 'Terms And Conditions',
+        '/terms-conditions' => 'Terms And Conditions',
     ];
 }
 

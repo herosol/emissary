@@ -192,7 +192,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="two_card_button_text<?=$i?>" class="control-label">Button Text<span class="symbol required">*</span></label>
-                                <input type="text" name="two_card_button_text<?=$i?>" id="two_card_button_text<?=$i?>" value="<?= $row['erc_left_button_heading'.$i] ?>" class="form-control" required>
+                                <input type="text" name="two_card_button_text<?=$i?>" id="two_card_button_text<?=$i?>" value="<?= $row['two_card_button_text'.$i] ?>" class="form-control" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="two_card_button_link<?=$i?>" class="control-label">Button Link<span class="symbol required">*</span></label>
@@ -200,7 +200,7 @@
                                     <option value=''>-- Select --</option>
                                     <?php $pages = get_pages();
                                     foreach ($pages as $index => $page) { ?>
-                                        <option value="<?= $index ?>" <?= ($row['erc_left_button_link'.$i] == $index) ? 'selected' : '' ?>> <?= $page ?></option>
+                                        <option value="<?= $index ?>" <?= ($row['two_card_button_link'.$i] == $index) ? 'selected' : '' ?>> <?= $page ?></option>
                                     <?php
                                     }
                                     ?>

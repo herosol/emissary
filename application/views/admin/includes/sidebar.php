@@ -66,6 +66,12 @@
                             <span class="title">Jobs</span>
                         </a>
                     </li>
+                    <li class=" <?= ($this->uri->segment(3) == 'job_detail') ? ' active' : '' ?>">
+                        <a href="<?= site_url(ADMIN.'/sitecontent/job_detail') ?>">
+                            <i class="entypo-doc-text  "></i>
+                            <span class="title">Job Detail</span>
+                        </a>
+                    </li>
                     <li class=" <?= ($this->uri->segment(3) == 'blogs') ? ' active' : '' ?>">
                         <a href="<?= site_url(ADMIN.'/sitecontent/blogs') ?>">
                             <i class="entypo-doc-text  "></i>
